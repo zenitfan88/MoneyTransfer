@@ -37,7 +37,7 @@ public class MoneyTransferTest {
         double expected = Double.parseDouble(amount) + balanceBeforeTransfer;
 
         Assertions.assertEquals(actual, expected);
-        Assertions.assertTrue (expected <0);
+        Assertions.assertTrue (actual >=0);
 
     }
 }
