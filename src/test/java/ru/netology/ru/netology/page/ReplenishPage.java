@@ -10,13 +10,13 @@ public class ReplenishPage {
     private static SelenideElement amountField = $("[data-test-id='amount'] input");
     private static SelenideElement transferButton = $("[data-test-id='action-transfer']");
 
-    public int getAmount(int amount) {
+    public String getAmount(String amount) {
         amountField.sendKeys(Keys.CONTROL + "A", Keys.BACK_SPACE);
         amountField.setValue(String.valueOf(amount));
         return amount;
     }
 
-    public DashboardPage validAmount(int amount) {
+    public DashboardPage validAmount(String amount) {
         transferButton.click();
         return new DashboardPage();
     }

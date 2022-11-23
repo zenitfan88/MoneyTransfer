@@ -24,7 +24,7 @@ public class DashboardPage {
     }
 
 
-    public int getCardBalance(String card) throws Exception {
+    public double getCardBalance(String card) throws Exception {
         if (card == "first") {
             val text = cardFirst.text();
             return extractBalance(text);
@@ -46,13 +46,11 @@ public class DashboardPage {
     public ReplenishPage selectReplenishCard(String card) {
         if (card == "first") {
             replenishFirstСardButton.click();
-            fromField.sendKeys(Keys.CONTROL + "A", Keys.BACK_SPACE);
             fromField.setValue(numberSecondCard);
         }
 
         if (card == "second") {
             replenishSecondСardButton.click();
-            fromField.sendKeys(Keys.CONTROL + "A", Keys.BACK_SPACE);
             fromField.setValue(numberFirstCard);
         }
         return new ReplenishPage();
