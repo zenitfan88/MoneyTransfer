@@ -24,13 +24,4 @@ public class DataHelper {
     public static VerificationCode getVerificationCode(AuthInfo authInfo) {
         return new VerificationCode("12345");
     }
-
-    @Value
-    public static class Amount {
-        private int amount;
-    }
-
-    public static Amount getAmount(int amount) {
-        return new Amount(amount);
-    }
 }

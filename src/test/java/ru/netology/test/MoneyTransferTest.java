@@ -1,6 +1,7 @@
 package ru.netology.test;
 
 import lombok.val;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.DataHelper;
@@ -9,7 +10,6 @@ import ru.netology.ru.netology.page.LoginPage;
 import ru.netology.ru.netology.page.ReplenishPage;
 
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 
@@ -23,28 +23,22 @@ public class MoneyTransferTest {
     @Test
     void transferFromCardOneToCardTwo() throws Exception {
         var loginPage = new LoginPage();
-//        var amount = DataHelper.getAmount(5000);
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = loginPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCode(authInfo);
         var dashboardPage = verificationPage.validVerify(verificationCode);
-        var replenishPage = dashboardPage.selectReplenishCard("first");
-        var replenishAmount = replenishPage.validAmount(5000);
-        val amount = new ReplenishPage().validAmount(5000);
-//        dashboardPage.selectReplenishCard("first");
-//        dashboardPage.replenishAmount("5000");
+        val balanceBeforeTransfer = new DashboardPage().getCardBalance("second");
+        var replenishPage = dashboardPage.selectReplenishCard("second");
+        val amount = new ReplenishPage().getAmount(50000);
+        var replenishAmount = replenishPage.validAmount(amount);
 
-//        val balanceFirst1 = new DashboardPage().getCardBalance("second");
-//        dashboardPage.selectReplenishCard("second");
-//        dashboardPage.replenishAmount("5000");
-        val balanceFirst = new DashboardPage().getCardBalance("second");
-//        var weqwqwr1=dashboardPage.validAmount(new DataHelper.Amount("5000"));
-//        val amount = DataHelper.getAmount(5000);
-//        int itogo = val amount;
-//        int itogo = Integer.parseInt(String.valueOf(amount)) + balanceFirst;
-        System.out.println(replenishPage.validAmount(amount));
-        System.out.println(amount);
-        System.out.println(balanceFirst);
-//        $(cardFirst).shouldHave(text("баланс: " + itogo));
+//        var replenishPage1 = dashboardPage.selectReplenishCard("first");
+////        val amount1 = new ReplenishPage().getAmount(500);
+//        var replenishAmount1 = replenishPage.validAmount(amount);
+        val balanceAfterTransfer = new DashboardPage().getCardBalance("second");
+        int expected = amount + balanceBeforeTransfer;
+        int actual = balanceAfterTransfer;
+        Assertions.assertEquals(actual, expected);
+
     }
 }

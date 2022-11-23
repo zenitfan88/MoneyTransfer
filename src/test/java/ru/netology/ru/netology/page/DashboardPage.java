@@ -3,20 +3,17 @@ package ru.netology.ru.netology.page;
 import com.codeborne.selenide.SelenideElement;
 import lombok.val;
 import org.openqa.selenium.Keys;
-import ru.netology.data.DataHelper;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class DashboardPage {
-
-        private String amount;
     private SelenideElement cardFirst = $("[data-test-id='92df3f1c-a033-48e6-8390-206f6b1f56c0']");
     private SelenideElement cardSecond = $("[data-test-id='0f3f5c2a-249e-4c3d-8287-09f7a039391d']");
-    private SelenideElement replenishFirstСardButton = $("[data-test-id='92df3f1c-a033-48e6-8390-206f6b1f56c0'] button");
-    private SelenideElement replenishSecondСardButton = $("[data-test-id='0f3f5c2a-249e-4c3d-8287-09f7a039391d'] button");
-    private static SelenideElement amountField = $("[data-test-id='amount'] input");
-    private static SelenideElement fromField = $("[data-test-id='from'] input");
-    private static SelenideElement transferButton = $("[data-test-id='action-transfer']");
+    private SelenideElement replenishFirstСardButton = $("[data-test-id='92df3f1c-a033-48e6-8390-" +
+            "206f6b1f56c0'] button");
+    private SelenideElement replenishSecondСardButton = $("[data-test-id='0f3f5c2a-249e-4c3d-8287-" +
+            "09f7a039391d'] button");
+    private SelenideElement fromField = $("[data-test-id='from'] input");
     private String numberFirstCard = "5559000000000001";
     private String numberSecondCard = "5559000000000002";
     private final String balanceStart = "баланс: ";
@@ -60,19 +57,5 @@ public class DashboardPage {
         }
         return new ReplenishPage();
     }
-
-//    public static int replenishAmount(String amount) {
-//        amountField.sendKeys(Keys.CONTROL + "A", Keys.BACK_SPACE);
-//        amountField.setValue(amount);
-//        transferButton.click();
-//        return Integer.parseInt(amount);
-//    }
-
-//    public ReplenishPage validAmount(DataHelper.Amount amount) {
-//        amountField.sendKeys(Keys.CONTROL + "A", Keys.BACK_SPACE);
-//        amountField.setValue(amount.getAmount());
-//        transferButton.click();
-//        return new ReplenishPage();
-//    }
 }
 
