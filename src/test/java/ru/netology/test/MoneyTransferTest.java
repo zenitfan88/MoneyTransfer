@@ -21,7 +21,7 @@ public class MoneyTransferTest {
     }
 
     @Test
-    void transferFromCardOneToCardTwo() throws Exception {
+    void successfulTransferTest() throws Exception {
         var loginPage = new LoginPage();
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = loginPage.validLogin(authInfo);
@@ -37,7 +37,25 @@ public class MoneyTransferTest {
         double expected = Double.parseDouble(amount) + balanceBeforeTransfer;
 
         Assertions.assertEquals(actual, expected);
-        Assertions.assertTrue (actual >=0);
+    }
 
+    @Test
+    void successfulDebitingTest() throws Exception {
+        var loginPage = new LoginPage();
+        var authInfo = DataHelper.getAuthInfo();
+        var verificationPage = loginPage.validLogin(authInfo);
+        var verificationCode = DataHelper.getVerificationCode(authInfo);
+        var dashboardPage = verificationPage.validVerify(verificationCode);
+        val balanceBeforeTransfer = new DashboardPage().getCardBalance("second");
+        var replenishPage = dashboardPage.selectReplenishCard("first");
+        val amount = new ReplenishPage().getAmount("50000");
+        var replenishAmount = replenishPage.validAmount("amount");
+
+        val actual = new DashboardPage().getCardBalance("second");
+
+        double expected = balanceBeforeTransfer - Double.parseDouble(amount);
+
+        Assertions.assertEquals(actual, expected);
+        Assertions.assertTrue (actual >=0);
     }
 }
