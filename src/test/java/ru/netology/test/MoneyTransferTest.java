@@ -51,11 +51,11 @@ public class MoneyTransferTest {
         val amount = new ReplenishPage().getAmount("5000");
         var replenishAmount = replenishPage.validAmount("amount");
 
-        val actual = new DashboardPage().getCardBalance("second");
+        val actual1 = new DashboardPage().getCardBalance("second");
 
-        double expected = (balanceBeforeTransfer - Double.parseDouble(amount));
+        double expected1 = (balanceBeforeTransfer - Double.parseDouble(amount));
 
-        Assertions.assertEquals(actual, expected);
-        Assertions.assertTrue (actual >=0);
+        Assertions.assertEquals(actual1, expected1);
+        Assertions.assertTrue (actual1 >=0);
     }
 }
