@@ -48,7 +48,7 @@ public class MoneyTransferTest {
         var dashboardPage = verificationPage.validVerify(verificationCode);
         val balanceBeforeTransfer = new DashboardPage().getCardBalance("second");
         var replenishPage = dashboardPage.selectReplenishCard("first");
-        val amount = new ReplenishPage().getAmount("50000");
+        val amount = new ReplenishPage().getAmount("5000");
         var replenishAmount = replenishPage.validAmount("amount");
 
         val actual = new DashboardPage().getCardBalance("second");
