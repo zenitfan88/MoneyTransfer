@@ -9,7 +9,7 @@ public class ReplenishPage {
     private static SelenideElement transferButton = $("[data-test-id='action-transfer']");
 
     public String getAmount(String amount) {
-        amountField.setValue(String.valueOf(amount));
+        amountField.setValue(amount);
         return amount;
     }
 
