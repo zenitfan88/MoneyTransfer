@@ -53,7 +53,7 @@ public class MoneyTransferTest {
 
         val actual1 = new DashboardPage().getCardBalance("second");
 
-        double expected1 = (balanceBeforeTransfer - Double.parseDouble(amount));
+        double expected1 = balanceBeforeTransfer - Double.parseDouble(amount);
 
         Assertions.assertEquals(actual1, expected1);
         Assertions.assertTrue (actual1 >=0);
