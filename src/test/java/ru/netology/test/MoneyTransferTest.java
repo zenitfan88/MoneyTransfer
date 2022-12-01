@@ -33,7 +33,7 @@ public class MoneyTransferTest {
 
         var replenishCard = DataHelper.getReplenishCard("first");
         var selectReplenishCard = dashboardPage.selectReplenishCard(replenishCard);
-        val amount = new ReplenishPage().getAmount("50000");
+        val amount = new ReplenishPage().getAmount("5000");
         var validAmount = ReplenishPage.numberCard(replenishCard);
 
         val actualBalanceCardTransferredTo = new DashboardPage().getCardBalance("first");
