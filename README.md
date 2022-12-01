@@ -1,1 +1,1 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/kas9uqwor8ld6qc8/branch/main?svg=true)](https://ci.appveyor.com/project/zenitfan88/moneytransfer-2jxqn/branch/main)
+[![Build status](https://ci.appveyor.com/api/projects/status/fxfh80tji95p1fw2/branch/main?svg=true)](https://ci.appveyor.com/project/zenitfan88/moneytransfer-int9l/branch/main)
