@@ -21,41 +21,28 @@ public class MoneyTransferTest {
     }
 
     @Test
-    void successfulTransferTest() throws Exception {
+    void TransferTest() throws Exception {
         var loginPage = new LoginPage();
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = loginPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCode(authInfo);
         var dashboardPage = verificationPage.validVerify(verificationCode);
-        val balanceBeforeTransfer = new DashboardPage().getCardBalance("first");
-        var replenishPage = dashboardPage.selectReplenishCard("first");
-        val amount = new ReplenishPage().getAmount("500");
-        var replenishAmount = replenishPage.validAmount("amount");
 
-        val actual = new DashboardPage().getCardBalance("first");
+        val balanceFirstCardBeforeTransfer = new DashboardPage().getCardBalance("first");
+        val balanceSecondCardBeforeTransfer = new DashboardPage().getCardBalance("second");
 
-        double expected = Double.parseDouble(amount) + balanceBeforeTransfer;
+        var replenishCard = DataHelper.getReplenishCard("first");
+        var selectReplenishCard = dashboardPage.selectReplenishCard(replenishCard);
+        val amount = new ReplenishPage().getAmount("50000");
+        var validAmount = ReplenishPage.numberCard(replenishCard);
 
-        Assertions.assertEquals(actual, expected);
-    }
+        val actualBalanceCardTransferredTo = new DashboardPage().getCardBalance("first");
+        val actualBalanceCardTransferredFrom = new DashboardPage().getCardBalance("second");
 
-    @Test
-    void successfulDebitingTest() throws Exception {
-        var loginPage = new LoginPage();
-        var authInfo = DataHelper.getAuthInfo();
-        var verificationPage = loginPage.validLogin(authInfo);
-        var verificationCode = DataHelper.getVerificationCode(authInfo);
-        var dashboardPage = verificationPage.validVerify(verificationCode);
-        val balanceBeforeTransfer = new DashboardPage().getCardBalance("second");
-        var replenishPage = dashboardPage.selectReplenishCard("first");
-        val amount = new ReplenishPage().getAmount("5000");
-        var replenishAmount = replenishPage.validAmount("amount");
-
-        val actual1 = new DashboardPage().getCardBalance("second");
-
-        double expected1 = balanceBeforeTransfer - Double.parseDouble(amount);
-
-        Assertions.assertEquals(actual1, expected1);
-        Assertions.assertTrue (actual1 >=0);
+        double expectedBalanceCardTransferredTo = balanceFirstCardBeforeTransfer + Double.parseDouble(amount);
+        double expectedBalanceCardTransferredFrom = balanceSecondCardBeforeTransfer - Double.parseDouble(amount);
+        Assertions.assertEquals(actualBalanceCardTransferredTo, expectedBalanceCardTransferredTo);
+        Assertions.assertEquals(actualBalanceCardTransferredFrom, expectedBalanceCardTransferredFrom);
+        Assertions.assertTrue(expectedBalanceCardTransferredFrom >= 0);
     }
 }
