@@ -1,4 +1,4 @@
-package ru.netology.ru.netology.page;
+package ru.netology.page;
 
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper;
