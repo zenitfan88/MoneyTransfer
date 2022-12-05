@@ -1,12 +1,9 @@
 package ru.netology.data;
 
-import com.codeborne.selenide.SelenideElement;
 import lombok.Value;
 
-import static com.codeborne.selenide.Selenide.$;
 
 public class DataHelper {
-    public static SelenideElement replenishСardButton;
 
     private DataHelper() {
     }
@@ -33,22 +30,20 @@ public class DataHelper {
     @Value
     public static class ReplenishCard {
         public String card;
-        SelenideElement replenishСardButton;
+        public String cardId;
         public String numberCard;
     }
 
     public static ReplenishCard getReplenishCard(String card) throws Exception {
         if (card.equals("first")) {
-            replenishСardButton = $("[data-test-id='92df3f1c-a033-48e6-8390-" +
-                    "206f6b1f56c0'] button");
+            String cardId = "92df3f1c-a033-48e6-8390-206f6b1f56c0";
             String numberCard = "5559000000000002";
-            return new ReplenishCard(card, replenishСardButton, numberCard);
+            return new ReplenishCard(card, cardId, numberCard);
         }
         if (card.equals("second")) {
-            replenishСardButton = $("[data-test-id='0f3f5c2a-249e-4c3d-8287-" +
-                    "09f7a039391d'] button");
+            String cardId = "0f3f5c2a-249e-4c3d-8287-09f7a039391d";
             String numberCard = "5559000000000001";
-            return new ReplenishCard(card, replenishСardButton, numberCard);
+            return new ReplenishCard(card, cardId, numberCard);
         }
         throw new Exception("Такой карты не существует");
     }

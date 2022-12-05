@@ -31,7 +31,7 @@ public class MoneyTransferTest {
         val balanceFirstCardBeforeTransfer = new DashboardPage().getCardBalance("first");
         val balanceSecondCardBeforeTransfer = new DashboardPage().getCardBalance("second");
 
-        var replenishCard = DataHelper.getReplenishCard("first");
+        var replenishCard = DataHelper.getReplenishCard("second");
         var selectReplenishCard = dashboardPage.selectReplenishCard(replenishCard);
         val amount = new ReplenishPage().getAmount("5000");
         var validAmount = ReplenishPage.numberCard(replenishCard);
@@ -39,8 +39,8 @@ public class MoneyTransferTest {
         val actualBalanceCardTransferredTo = new DashboardPage().getCardBalance("first");
         val actualBalanceCardTransferredFrom = new DashboardPage().getCardBalance("second");
 
-        double expectedBalanceCardTransferredTo = balanceFirstCardBeforeTransfer + Double.parseDouble(amount);
-        double expectedBalanceCardTransferredFrom = balanceSecondCardBeforeTransfer - Double.parseDouble(amount);
+        double expectedBalanceCardTransferredTo = balanceFirstCardBeforeTransfer - Double.parseDouble(amount);
+        double expectedBalanceCardTransferredFrom = balanceSecondCardBeforeTransfer + Double.parseDouble(amount);
         Assertions.assertEquals(actualBalanceCardTransferredTo, expectedBalanceCardTransferredTo);
         Assertions.assertEquals(actualBalanceCardTransferredFrom, expectedBalanceCardTransferredFrom);
         Assertions.assertTrue(expectedBalanceCardTransferredFrom >= 0);

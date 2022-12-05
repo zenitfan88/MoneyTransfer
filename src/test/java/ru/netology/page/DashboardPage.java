@@ -5,14 +5,14 @@ import lombok.val;
 import ru.netology.data.DataHelper;
 
 import static com.codeborne.selenide.Selenide.$;
-import static ru.netology.data.DataHelper.replenishСardButton;
 
 public class DashboardPage {
     private SelenideElement cardFirst = $("[data-test-id='92df3f1c-a033-48e6-8390-206f6b1f56c0']");
     private SelenideElement cardSecond = $("[data-test-id='0f3f5c2a-249e-4c3d-8287-09f7a039391d']");
+    private String dataId = "[data-test-id='";
+    private String button = "'] button";
     private final String balanceStart = "баланс: ";
     private final String balanceFinish = " р.";
-
 
     public DashboardPage() {
     }
@@ -29,6 +29,7 @@ public class DashboardPage {
         throw new Exception("Выбранной карты не существует");
     }
 
+
     private int extractBalance(String text) {
         val start = text.indexOf(balanceStart);
         val finish = text.indexOf(balanceFinish);
@@ -37,7 +38,7 @@ public class DashboardPage {
     }
 
     public ReplenishPage selectReplenishCard(DataHelper.ReplenishCard card) {
-        replenishСardButton.click();
+        $(dataId + card.getCardId() + button).click();
         return new ReplenishPage();
     }
 }
